@@ -1,0 +1,85 @@
+Conlang
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>그날록 사전</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+        header {
+            background-color: #333;
+            color: #fff;
+            padding: 1rem;
+            text-align: center;
+        }
+        .container {
+            width: 80%;
+            margin: 2rem auto;
+            padding: 1rem;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            margin-top: 0;
+        }
+        .search-bar {
+            margin-bottom: 1rem;
+        }
+        .search-bar input {
+            width: 100%;
+            padding: 0.5rem;
+            font-size: 1rem;
+        }
+        .entry {
+            margin-bottom: 1rem;
+        }
+        .entry h2 {
+            margin: 0;
+        }
+        .entry p {
+            margin: 0.5rem 0 0;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>그날록 사전</h1>
+    </header>
+    <div class="container">
+        <div class="search-bar">
+            <input type="text" id="search" placeholder="단어를 입력하세요..." oninput="searchDictionary()">
+        </div>
+        <div id="dictionary-entries">
+        </div>
+    </div>
+
+    <script>
+        const dictionary = {
+            "단어1": "단어1의 정의",
+            "단어2": "단어2의 정의",
+            "단어3": "단어3의 정의"
+        };
+
+        function searchDictionary() {
+            const searchValue = document.getElementById('search').value.toLowerCase();
+            const entriesContainer = document.getElementById('dictionary-entries');
+            entriesContainer.innerHTML = '';
+
+            for (const [word, definition] of Object.entries(dictionary)) {
+                if (word.toLowerCase().includes(searchValue)) {
+                    const entry = document.createElement('div');
+                    entry.classList.add('entry');
+                    entry.innerHTML = `<h2>${word}</h2><p>${definition}</p>`;
+                    entriesContainer.appendChild(entry);
+                }
+            }
+        }
+    </script>
+</body>
+</html>
